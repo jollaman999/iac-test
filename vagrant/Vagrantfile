@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # VM1 - hcc-master
+  config.vm.define :iac_test do |iac_test|
+    iac_test.vm.box = "generic/ubuntu2004"
+    iac_test.vm.provider "libvirt" do |libvirt|
+      libvirt.uri = 'qemu+unix:///system'
+      libvirt.driver = 'kvm'
+      libvirt.host = "test1"
+      libvirt.cpus = 2
+      libvirt.memory = 2048
+    end
+    iac_test.vm.hostname = "test1"
+    iac_test.vm.network "private_network", ip: "172.168.10.100"
+
+    # Enable SSH Password Authentication
+    iac_test.vm.provision "shell", inline: <<-SHELL
+      sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
+      sed -i 's/us.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+      sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+      sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+      systemctl restart ssh
+    SHELL
+  end
+
+end

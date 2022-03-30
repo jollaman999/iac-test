@@ -1,0 +1,27 @@
+- name: Install telegraf deb package
+  apt:
+    deb: "{{telegraf_deb_download_url}}"
+
+- name: Copying telegraf configuration
+  copy:
+    src: "{{ item }}"
+    dest: "{{ telegraf_configuration_location }}"
+    owner: root
+    mode: "0644"
+  with_fileglob:
+    - config/*
+
+- name: Replacing telegraf configuration - TELEGRAF_SERVER_UUID
+  shell: sed -i 's/TELEGRAF_SERVER_UUID/{{ telegraf_server_uuid }}/' {{ telegraf_configuration_location }}
+
+- name: Replacing telegraf configuration - TELEGRAF_DB_IP
+  shell: sed -i 's/TELEGRAF_DB_IP/{{ telegraf_influx_db_ip }}/' {{ telegraf_configuration_location }}
+
+- name: Replacing telegraf configuration - TELEGRAF_CLUSTER_IP_LIST
+  shell: sed -i 's/TELEGRAF_CLUSTER_IP_LIST/{{ telegraf_cluster_ip_list }}/' {{ telegraf_configuration_location }}
+
+- name: Restart telegraf Service
+  service:
+    name: telegraf
+    state: restarted
+    enabled: true
