@@ -1,0 +1,6 @@
+- name: Telegraf Provisioning Test for Terraform
+  hosts: 192.168.122.100
+  force_handlers: true
+
+  roles:
+    - telegraf

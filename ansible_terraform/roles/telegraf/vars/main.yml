@@ -1,0 +1,2 @@
+telegraf_deb_download_url: "https://dl.influxdata.com/telegraf/releases/telegraf_1.22.0-1_amd64.deb"
+telegraf_configuration_location: "/etc/telegraf/telegraf.conf"
