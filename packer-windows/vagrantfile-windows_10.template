@@ -18,8 +18,8 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
     
     config.vm.provider :libvirt do |libvirt, override|
-        libvirt.memory = 4096
-        libvirt.cpus = 4
+        libvirt.memory = 8192
+        libvirt.cpus = 8
 
         # Use WinRM for the default synced folder; or disable it if
         # WinRM is not available. Linux hosts don't support SMB,
