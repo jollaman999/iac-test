@@ -9,8 +9,8 @@ Vagrant.configure("2") do |config|
       libvirt.uri = 'qemu+unix:///system'
       libvirt.driver = 'kvm'
       libvirt.host = "test1"
-      libvirt.cpus = 4
-      libvirt.memory = 4096
+      libvirt.cpus = 8
+      libvirt.memory = 8192
     end
     iac_test.vm.hostname = "test1"
     iac_test.vm.network "private_network", ip: "172.168.10.100"
