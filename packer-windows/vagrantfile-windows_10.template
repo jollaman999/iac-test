@@ -30,12 +30,5 @@ Vagrant.configure("2") do |config|
         else
             override.vm.synced_folder ".", "/vagrant", disabled: true
         end
-
-        # Enable Hyper-V enlightments, see
-        # https://blog.wikichoon.com/2014/07/enabling-hyper-v-enlightenments-with-kvm.html
-        libvirt.hyperv_feature :name => 'stimer',  :state => 'on'
-        libvirt.hyperv_feature :name => 'relaxed', :state => 'on'
-        libvirt.hyperv_feature :name => 'vapic',   :state => 'on'
-        libvirt.hyperv_feature :name => 'synic',   :state => 'on'
     end
 end
