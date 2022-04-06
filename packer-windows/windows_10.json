@@ -67,7 +67,8 @@
         "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
         "remote_path": "/tmp/script.bat",
         "scripts": [
-          "./scripts/set-winrm-automatic.bat"
+          "./scripts/set-winrm-automatic.bat",
+          "./scripts/allow-winrm.bat"
         ],
         "type": "windows-shell"
       }
