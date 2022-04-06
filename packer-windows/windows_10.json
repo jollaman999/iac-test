@@ -68,7 +68,8 @@
         "remote_path": "/tmp/script.bat",
         "scripts": [
           "./scripts/set-winrm-automatic.bat",
-          "./scripts/allow-winrm.bat"
+          "./scripts/allow-winrm.bat",
+          "./scripts/enable-uac.bat"
         ],
         "type": "windows-shell"
       }
